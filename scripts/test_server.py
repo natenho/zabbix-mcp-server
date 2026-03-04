@@ -20,8 +20,8 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Add src directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 
 def setup_logging() -> None:
@@ -40,7 +40,7 @@ def test_import() -> bool:
     """
     try:
         print("🔍 Testing module import...")
-        from zabbix_mcp_server import get_zabbix_client
+        from zabbix_mcp.zabbix_mcp_server import get_zabbix_client
         print("✅ Module import successful")
         return True
     except ImportError as e:
@@ -102,7 +102,7 @@ def test_connection() -> bool:
     print("\n🔍 Testing Zabbix connection...")
     
     try:
-        from zabbix_mcp_server import get_zabbix_client
+        from zabbix_mcp.zabbix_mcp_server import get_zabbix_client
         
         # Test getting client and API version
         client = get_zabbix_client()
@@ -132,7 +132,7 @@ def test_basic_operations() -> bool:
     print("\n🔍 Testing basic operations...")
     
     try:
-        from zabbix_mcp_server import get_zabbix_client
+        from zabbix_mcp.zabbix_mcp_server import get_zabbix_client
         client = get_zabbix_client()
         
         # Test host groups (usually always present)
@@ -176,7 +176,7 @@ def test_transport_config() -> bool:
     print("\n🔍 Testing transport configuration...")
     
     try:
-        from zabbix_mcp_server import get_transport_config
+        from zabbix_mcp.zabbix_mcp_server import get_transport_config
         
         config = get_transport_config()
         transport = config["transport"]
@@ -224,7 +224,7 @@ def test_read_only_mode() -> bool:
     print("\n🔍 Testing read-only mode...")
     
     try:
-        from zabbix_mcp_server import validate_read_only
+        from zabbix_mcp.zabbix_mcp_server import validate_read_only
         
         # This should raise an exception in read-only mode
         validate_read_only()
