@@ -141,6 +141,7 @@ Configure via environment variables before running, or use directly in the MCP c
 
 - `READ_ONLY` - Set to `true`, `1`, or `yes` to enable read-only mode (only GET operations allowed)
 - `VERIFY_SSL` - Enable/disable SSL certificate verification (default: `true`)
+- `DEBUG` - Set to `1` or `true` for detailed logging
 
 ### Transport Configuration
 
