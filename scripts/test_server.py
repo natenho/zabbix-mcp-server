@@ -261,7 +261,7 @@ def show_summary(tests_passed: int, total_tests: int) -> None:
         
         print("\nNext steps:")
         print("1. Configure your MCP client (see MCP_SETUP.md)")
-        print("2. Start the server: uv run python src/zabbix_mcp_server.py")
+        print("2. Start the server: uvx --from git+https://github.com/mpeirone/zabbix-mcp-server zabbix-mcp")
         print("3. Test with your MCP client")
         
     else:

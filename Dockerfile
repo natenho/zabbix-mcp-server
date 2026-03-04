@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
-COPY src/ ./src/
+COPY zabbix_mcp/ ./zabbix_mcp/
 COPY scripts/ ./scripts/
 COPY config/ ./config/
 
@@ -24,4 +24,4 @@ USER mcpuser
 EXPOSE 8000
 
 # Run the server in SSE mode
-CMD ["python", "-c", "import sys; sys.path.insert(0, 'src'); from zabbix_mcp_server import mcp; mcp.run(transport='sse', host='0.0.0.0', port=8000)"]
+CMD ["python", "-c", "import sys; sys.path.insert(0, '.'); from zabbix_mcp.zabbix_mcp_server import mcp; mcp.run(transport='sse', host='0.0.0.0', port=8000)"]

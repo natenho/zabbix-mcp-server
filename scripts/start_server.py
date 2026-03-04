@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Add src directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 
 def setup_logging() -> None:
@@ -174,7 +174,7 @@ def main() -> None:
         
         # Import and run the server
         logger.info("Importing server module")
-        from zabbix_mcp_server import main as server_main
+        from zabbix_mcp.zabbix_mcp_server import main as server_main
         
         logger.info("Starting MCP server")
         print("🚀 Starting MCP server...")

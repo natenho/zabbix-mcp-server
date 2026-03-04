@@ -78,13 +78,20 @@ A comprehensive Model Context Protocol (MCP) server for Zabbix integration using
 
 ## Installation
 
-### Prerequisites
+### Recommended method: uvx (no cloning required)
 
-- Python 3.10 or higher
-- [uv](https://docs.astral.sh/uv/) package manager
-- Access to a Zabbix server with API enabled
+Requires only [uv](https://docs.astral.sh/uv/) installed:
 
-### Quick Start
+```bash
+uvx --from git+https://github.com/mpeirone/zabbix-mcp-server zabbix-mcp
+```
+
+Configure via environment variables before running, or use directly in the MCP configuration (see [MCP_SETUP.md](MCP_SETUP.md)).
+
+### Alternative method: clone the repository
+
+<details>
+<summary>Expand instructions</summary>
 
 1. **Clone the repository:**
    ```bash
@@ -100,13 +107,20 @@ A comprehensive Model Context Protocol (MCP) server for Zabbix integration using
 3. **Configure environment variables:**
    ```bash
    cp config/.env.example .env
-   # Edit .env with your Zabbix server details
+   # Edit .env with your Zabbix settings
    ```
 
 4. **Test the installation:**
    ```bash
    uv run python scripts/test_server.py
    ```
+
+</details>
+
+### Prerequisites
+
+- [uv](https://docs.astral.sh/uv/) installed
+- Access to a Zabbix server with API enabled
 
 ## Configuration
 
@@ -142,14 +156,14 @@ A comprehensive Model Context Protocol (MCP) server for Zabbix integration using
 
 ### Running the Server
 
-**With startup script (recommended):**
+**Via uvx (recommended):**
 ```bash
-uv run python scripts/start_server.py
+ZABBIX_URL=https://zabbix.example.com ZABBIX_TOKEN=xxx uvx --from git+https://github.com/mpeirone/zabbix-mcp-server zabbix-mcp
 ```
 
-**Direct execution:**
+**With local repository:**
 ```bash
-uv run python src/zabbix_mcp_server.py
+uv run python zabbix_mcp/zabbix_mcp_server.py
 ```
 
 ### Transport Options
@@ -279,7 +293,7 @@ docker build -t zabbix-mcp-server .
 
 ```
 zabbix-mcp-server/
-├── src/
+├── zabbix_mcp/
 │   └── zabbix_mcp_server.py    # Main server implementation
 ├── scripts/
 │   ├── start_server.py         # Startup script with validation
